@@ -1,17 +1,63 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+class Care extends React.Component {
+  render () {
+    return (
+      <div>
+        <h1>Companion Animal Care Tips</h1>
+        <div>
+          Care by Animal Type:
+        <ul>
+          <li>Dogs</li>
+          <li>Cats</li>
+          <li>Rabbits</li>
+          <li>Birds</li>
+          <li>Pigs</li>
+          <li>Fishes</li>
+        </ul>
+        </div>
+      </div>
+    );
+  }
+}
+
+
+class Navbar extends React.Component {
+  render() {
+    return (
+      <div className="nav">
+        <Link to="/">Home</Link>
+        <Link to="/Care">Care for your Companions</Link>
+      </div>
+    );
+  }
+}
+
+class MyRoutes extends React.Component {
+  render() {
+    return (
+      <Router>
+        <div>
+          <Navbar />
+          <hr />
+          <Routes>
+            <Route path="/" element ={<App/>} />
+            <Route path="/care" element={<Care/>} />
+          </Routes>
+        </div>
+      </Router>
+    );
+  }
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MyRoutes />
   </React.StrictMode>,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
